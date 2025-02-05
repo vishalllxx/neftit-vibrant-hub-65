@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Google, Wallet } from "lucide-react";
+import { Mail, Wallet } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
 
@@ -10,6 +10,7 @@ export function AuthPage() {
 
   const handleLogin = (method: string) => {
     // Mock login - in real app would integrate with actual auth
+    localStorage.setItem("isAuthenticated", "true");
     toast({
       title: "Login Successful",
       description: `Logged in with ${method}`,
@@ -36,10 +37,10 @@ export function AuthPage() {
           <Button 
             variant="outline"
             className="w-full gap-2"
-            onClick={() => handleLogin("Google")}
+            onClick={() => handleLogin("Email")}
           >
-            <Google className="w-4 h-4" />
-            Continue with Google
+            <Mail className="w-4 h-4" />
+            Continue with Email
           </Button>
         </CardContent>
       </Card>
