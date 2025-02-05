@@ -8,6 +8,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Link } from "react-router-dom";
+import { WalletConnect } from "@/components/wallet/WalletConnect";
 
 export function MainNav() {
   const menuItems = [
@@ -24,29 +25,32 @@ export function MainNav() {
           NEFTIT
         </Link>
         
-        <Sheet>
-          <SheetTrigger asChild>
-            <Button variant="ghost" size="icon">
-              <Menu className="h-6 w-6" />
-            </Button>
-          </SheetTrigger>
-          <SheetContent>
-            <SheetHeader>
-              <SheetTitle className="text-gradient">Menu</SheetTitle>
-            </SheetHeader>
-            <div className="mt-8 space-y-4">
-              {menuItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className="block px-4 py-2 hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
-          </SheetContent>
-        </Sheet>
+        <div className="flex items-center gap-4">
+          <WalletConnect />
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <Menu className="h-6 w-6" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent>
+              <SheetHeader>
+                <SheetTitle className="text-gradient">Menu</SheetTitle>
+              </SheetHeader>
+              <div className="mt-8 space-y-4">
+                {menuItems.map((item) => (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    className="block px-4 py-2 hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
     </nav>
   );
