@@ -1,9 +1,9 @@
 import { MainNav } from "@/components/layout/MainNav";
+import { VerticalNav } from "@/components/layout/VerticalNav";
 import { NFTCard } from "@/components/nft/NFTCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Search, Sparkles, Compass } from "lucide-react";
-import { DailyCheckin } from "@/components/streaks/DailyCheckin";
+import { Search, Sparkles } from "lucide-react";
 
 const Index = () => {
   const featuredNFTs = [
@@ -72,13 +72,14 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <MainNav />
-      <main className="container mx-auto px-4 pt-24">
+      <VerticalNav />
+      <main className="pl-20 pt-24 pr-4 container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Left Sidebar */}
           <div className="lg:col-span-3 space-y-8">
             <div className="glass p-6 rounded-lg space-y-4">
               <h2 className="text-xl font-bold flex items-center gap-2">
-                <Compass className="h-5 w-5 text-primary" />
+                <Sparkles className="h-5 w-5 text-primary" />
                 Discover Collections
               </h2>
               <div className="space-y-4">
@@ -106,8 +107,6 @@ const Index = () => {
                 View All Collections
               </Button>
             </div>
-
-            <DailyCheckin />
           </div>
 
           {/* Main Content */}
@@ -133,20 +132,10 @@ const Index = () => {
               </div>
             </div>
 
-            <div className="space-y-8">
-              <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold flex items-center gap-2">
-                  <Sparkles className="h-5 w-5 text-primary" />
-                  Featured Collections
-                </h2>
-                <Button variant="ghost">View All</Button>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {featuredNFTs.map((nft) => (
-                  <NFTCard key={nft.id} {...nft} />
-                ))}
-              </div>
+            <div className="nft-grid">
+              {featuredNFTs.map((nft) => (
+                <NFTCard key={nft.id} {...nft} />
+              ))}
             </div>
           </div>
         </div>
