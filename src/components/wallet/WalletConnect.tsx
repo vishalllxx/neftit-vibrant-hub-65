@@ -7,7 +7,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Wallet, WalletConnect as WalletConnectIcon } from "lucide-react";
+import { Wallet, WalletCards } from "lucide-react";
 
 export function WalletConnect() {
   const [isConnected, setIsConnected] = useState(false);
@@ -38,7 +38,7 @@ export function WalletConnect() {
             </>
           ) : (
             <>
-              <WalletConnectIcon className="h-4 w-4" />
+              <WalletCards className="h-4 w-4" />
               <span>Connect Wallet</span>
             </>
           )}
