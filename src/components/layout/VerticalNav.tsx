@@ -18,7 +18,7 @@ export function VerticalNav() {
       <ScrollArea className="h-full">
         <div className="space-y-4 py-4">
           <div className="px-2 py-2">
-            <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
+            <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight text-white">
               Menu
             </h2>
             <div className="space-y-1">
@@ -28,7 +28,7 @@ export function VerticalNav() {
                     variant="ghost"
                     size="icon"
                     className={cn(
-                      "w-full h-12",
+                      "w-full h-12 text-white",
                       location.pathname === item.path && "bg-accent text-accent-foreground"
                     )}
                   >

@@ -21,15 +21,27 @@ export function MainNav() {
   return (
     <nav className="fixed top-0 w-full z-50 glass px-4 py-3">
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-2xl font-bold text-gradient">
+        <Link to="/" className="text-2xl font-bold text-white">
           NEFTIT
         </Link>
         
         <div className="flex items-center gap-4">
+          <Link 
+            to="/" 
+            className="text-white hover:text-primary transition-colors"
+          >
+            Discover
+          </Link>
+          <Link 
+            to="/streaks" 
+            className="text-white hover:text-primary transition-colors"
+          >
+            Streaks
+          </Link>
           <WalletConnect />
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" className="text-white">
                 <Menu className="h-6 w-6" />
               </Button>
             </SheetTrigger>
@@ -42,7 +54,7 @@ export function MainNav() {
                   <Link
                     key={item.path}
                     to={item.path}
-                    className="block px-4 py-2 hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
+                    className="block px-4 py-2 text-white hover:bg-accent hover:text-accent-foreground rounded-md transition-colors"
                   >
                     {item.name}
                   </Link>
