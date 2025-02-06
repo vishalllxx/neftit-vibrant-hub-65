@@ -1,5 +1,4 @@
 import { MainNav } from "@/components/layout/MainNav";
-import { VerticalNav } from "@/components/layout/VerticalNav";
 import { NFTCard } from "@/components/nft/NFTCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -45,98 +44,36 @@ const Index = () => {
     },
   ];
 
-  const collections = [
-    {
-      id: "1",
-      name: "Bored Ape Yacht Club",
-      items: 10000,
-      floorPrice: "30.5",
-      volume: "1.2M",
-    },
-    {
-      id: "2",
-      name: "CryptoPunks",
-      items: 9999,
-      floorPrice: "45.2",
-      volume: "2.5M",
-    },
-    {
-      id: "3",
-      name: "Doodles",
-      items: 8888,
-      floorPrice: "8.2",
-      volume: "450K",
-    },
-  ];
-
   return (
     <div className="min-h-screen">
       <MainNav />
-      <VerticalNav />
-      <main className="pl-20 pt-24 pr-4 container mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* Left Sidebar */}
-          <div className="lg:col-span-3 space-y-8">
-            <div className="glass p-6 rounded-lg space-y-4">
-              <h2 className="text-xl font-bold flex items-center gap-2">
-                <Sparkles className="h-5 w-5 text-primary" />
-                Discover Collections
-              </h2>
-              <div className="space-y-4">
-                {collections.map((collection) => (
-                  <div
-                    key={collection.id}
-                    className="flex items-center justify-between p-3 hover:bg-accent rounded-lg transition-colors cursor-pointer"
-                  >
-                    <div>
-                      <h3 className="font-medium">{collection.name}</h3>
-                      <p className="text-sm text-muted-foreground">
-                        {collection.items} items
-                      </p>
-                    </div>
-                    <div className="text-right">
-                      <p className="font-medium">{collection.floorPrice} ETH</p>
-                      <p className="text-sm text-primary">
-                        Vol: {collection.volume}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <Button variant="ghost" className="w-full">
-                View All Collections
+      <main className="pt-24 px-4 container mx-auto">
+        <div className="space-y-8">
+          <div className="text-center space-y-4">
+            <h1 className="text-4xl font-bold text-gradient">
+              Discover, Collect, and Trade NFTs
+            </h1>
+            <p className="text-lg text-white max-w-2xl mx-auto">
+              Join the future of digital collectibles with our curated marketplace
+            </p>
+          </div>
+
+          <div className="max-w-2xl mx-auto">
+            <div className="glass p-2 flex gap-2 rounded-full">
+              <Input
+                placeholder="Search collections and creators..."
+                className="border-none bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 text-white"
+              />
+              <Button size="icon" className="rounded-full">
+                <Search className="h-4 w-4" />
               </Button>
             </div>
           </div>
 
-          {/* Main Content */}
-          <div className="lg:col-span-9 space-y-8">
-            <div className="text-center space-y-4">
-              <h1 className="text-4xl font-bold text-gradient">
-                Discover, Collect, and Trade NFTs
-              </h1>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Join the future of digital collectibles with our curated marketplace
-              </p>
-            </div>
-
-            <div className="max-w-2xl mx-auto">
-              <div className="glass p-2 flex gap-2 rounded-full">
-                <Input
-                  placeholder="Search collections and creators..."
-                  className="border-none bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
-                />
-                <Button size="icon" className="rounded-full">
-                  <Search className="h-4 w-4" />
-                </Button>
-              </div>
-            </div>
-
-            <div className="nft-grid">
-              {featuredNFTs.map((nft) => (
-                <NFTCard key={nft.id} {...nft} />
-              ))}
-            </div>
+          <div className="nft-grid">
+            {featuredNFTs.map((nft) => (
+              <NFTCard key={nft.id} {...nft} />
+            ))}
           </div>
         </div>
       </main>
