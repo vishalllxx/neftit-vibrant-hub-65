@@ -1,15 +1,17 @@
+
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { WalletConnect } from "@/components/wallet/WalletConnect";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Diamond, Trophy, Users, Award, Gift, Bookmark, LogOut, Search } from "lucide-react";
 
 export function MainNav() {
+  const location = useLocation();
   const menuItems = [
     { 
       name: "Leaderboard", 
@@ -52,9 +54,20 @@ export function MainNav() {
             NEFTIT
           </Link>
           
-          <Link to="/discover" className="text-white/80 hover:text-white transition-colors">
-            Discover
-          </Link>
+          <div className="flex items-center gap-6">
+            <Link 
+              to="/" 
+              className={`text-white/80 hover:text-white transition-colors ${location.pathname === "/" ? "text-white font-medium" : ""}`}
+            >
+              Discover
+            </Link>
+            <Link 
+              to="/streaks" 
+              className={`text-white/80 hover:text-white transition-colors ${location.pathname === "/streaks" ? "text-white font-medium" : ""}`}
+            >
+              Streaks✨
+            </Link>
+          </div>
           
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/50" />
@@ -67,16 +80,26 @@ export function MainNav() {
         </div>
         
         <div className="flex items-center gap-4">
-          {/* Stats Box */}
-          <div className="flex bg-black/40 rounded-full overflow-hidden">
-            <div className="flex items-center gap-2 px-4 py-2 border-r border-white/10">
-              <Trophy className="h-4 w-4 text-primary" />
-              <span className="text-white text-sm">380 XPs</span>
+          {/* User Stats Box */}
+          <div className="flex items-center gap-3">
+            <div className="flex bg-black/40 rounded-full overflow-hidden h-8">
+              <div className="flex items-center gap-2 px-3 py-1 border-r border-white/10">
+                <Trophy className="h-3.5 w-3.5 text-primary" />
+                <span className="text-white text-sm">380 XPs</span>
+              </div>
+              <div className="flex items-center gap-2 px-3 py-1">
+                <Diamond className="h-3.5 w-3.5 text-primary" />
+                <span className="text-white text-sm">3 NEFT</span>
+              </div>
             </div>
-            <div className="flex items-center gap-2 px-4 py-2">
-              <Diamond className="h-4 w-4 text-primary" />
-              <span className="text-white text-sm">3 NEFT</span>
-            </div>
+
+            {/* Username Box */}
+            <Link
+              to="/profile"
+              className="px-3 py-1.5 text-sm text-white bg-white/5 hover:bg-white/10 rounded-lg transition-colors"
+            >
+              vishal5120
+            </Link>
           </div>
 
           <WalletConnect />
