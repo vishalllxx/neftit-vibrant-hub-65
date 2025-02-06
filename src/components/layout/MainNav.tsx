@@ -78,66 +78,60 @@ export function MainNav() {
             />
           </div>
         </div>
-        
-        <div className="flex items-center gap-4">
-          <Sheet>
-            <SheetTrigger asChild>
-              <div className="flex items-center gap-3 cursor-pointer">
-                <div className="flex items-center gap-3">
-                  <div className="flex bg-black/40 rounded-full overflow-hidden h-8">
-                    <div className="flex items-center gap-2 px-3 py-1 border-r border-white/10">
-                      <Trophy className="h-3.5 w-3.5 text-primary" />
-                      <span className="text-white text-sm">380 XPs</span>
-                    </div>
-                    <div className="flex items-center gap-2 px-3 py-1">
-                      <Diamond className="h-3.5 w-3.5 text-primary" />
-                      <span className="text-white text-sm">3 NEFT</span>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Avatar className="h-8 w-8">
-                    <AvatarImage src="/placeholder.svg" />
-                    <AvatarFallback>VS</AvatarFallback>
-                  </Avatar>
-                  <span className="text-sm text-white bg-white/5 px-3 py-1.5 rounded-lg">
-                    vishal5120
-                  </span>
-                </div>
-              </div>
-            </SheetTrigger>
-            <SheetContent className="w-[300px] bg-[#121212] border-l border-white/10">
-              <div className="flex items-center gap-3 mb-8">
-                <Avatar className="h-10 w-10">
-                  <AvatarImage src="/placeholder.svg" />
-                  <AvatarFallback>VS</AvatarFallback>
-                </Avatar>
-                <div className="text-white">
-                  <h4 className="font-medium">vishal5120</h4>
-                </div>
-              </div>
-              <div className="space-y-2">
-                {menuItems.map((item) => (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    className="flex items-center gap-3 px-4 py-2 text-white hover:bg-white/5 rounded-lg transition-colors"
-                  >
-                    {item.icon}
-                    <span>{item.name}</span>
-                    {item.badge && (
-                      <span className="ml-auto text-xs bg-primary px-2 py-1 rounded-full">
-                        {item.badge}
-                      </span>
-                    )}
-                  </Link>
-                ))}
-              </div>
-            </SheetContent>
-          </Sheet>
 
-          <WalletConnect />
-        </div>
+        <Sheet>
+          <SheetTrigger asChild>
+            <div className="flex items-center gap-3 cursor-pointer">
+              <Avatar className="h-10 w-10">
+                <AvatarImage src="/placeholder.svg" />
+                <AvatarFallback>VS</AvatarFallback>
+              </Avatar>
+              <span className="text-sm text-white bg-white/5 px-3 py-1.5 rounded-lg">
+                vishal5120
+              </span>
+              <div className="flex bg-black/40 rounded-full overflow-hidden h-8">
+                <div className="flex items-center gap-2 px-3 py-1 border-r border-white/10">
+                  <Trophy className="h-3.5 w-3.5 text-primary" />
+                  <span className="text-white text-sm">380 XPs</span>
+                </div>
+                <div className="flex items-center gap-2 px-3 py-1">
+                  <Diamond className="h-3.5 w-3.5 text-primary" />
+                  <span className="text-white text-sm">3 NEFT</span>
+                </div>
+              </div>
+            </div>
+          </SheetTrigger>
+          <SheetContent className="w-[300px] bg-[#121212] border-l border-white/10">
+            <div className="flex items-center gap-3 mb-8">
+              <Avatar className="h-10 w-10">
+                <AvatarImage src="/placeholder.svg" />
+                <AvatarFallback>VS</AvatarFallback>
+              </Avatar>
+              <div className="text-white">
+                <h4 className="font-medium">vishal5120</h4>
+              </div>
+            </div>
+            <div className="space-y-2">
+              {menuItems.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className="flex items-center gap-3 px-4 py-2 text-white hover:bg-white/5 rounded-lg transition-colors"
+                >
+                  {item.icon}
+                  <span>{item.name}</span>
+                  {item.badge && (
+                    <span className="ml-auto text-xs bg-primary px-2 py-1 rounded-full">
+                      {item.badge}
+                    </span>
+                  )}
+                </Link>
+              ))}
+            </div>
+          </SheetContent>
+        </Sheet>
+
+        <WalletConnect />
       </div>
     </nav>
   );
