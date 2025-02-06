@@ -7,7 +7,7 @@ import {
 import { Link } from "react-router-dom";
 import { WalletConnect } from "@/components/wallet/WalletConnect";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Diamond, Trophy, Users, Award, Gift, Bookmark, LogOut } from "lucide-react";
+import { Diamond, Trophy, Users, Award, Gift, Bookmark, LogOut, Search } from "lucide-react";
 
 export function MainNav() {
   const menuItems = [
@@ -47,13 +47,26 @@ export function MainNav() {
   return (
     <nav className="fixed top-0 w-full z-50 glass px-4 py-3">
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-2xl font-bold text-white">
-          NEFTIT
-        </Link>
+        <div className="flex items-center gap-8">
+          <Link to="/" className="text-2xl font-bold text-white">
+            NEFTIT
+          </Link>
+          
+          <Link to="/discover" className="text-white/80 hover:text-white transition-colors">
+            Discover
+          </Link>
+          
+          <div className="relative">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/50" />
+            <input
+              type="text"
+              placeholder="Search Creators"
+              className="bg-white/5 border border-white/10 rounded-full pl-10 pr-4 py-2 text-sm text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-primary/50 w-[280px]"
+            />
+          </div>
+        </div>
         
         <div className="flex items-center gap-4">
-          <WalletConnect />
-          
           {/* Stats Box */}
           <div className="flex bg-black/40 rounded-full overflow-hidden">
             <div className="flex items-center gap-2 px-4 py-2 border-r border-white/10">
@@ -65,6 +78,8 @@ export function MainNav() {
               <span className="text-white text-sm">3 NEFT</span>
             </div>
           </div>
+
+          <WalletConnect />
 
           <Sheet>
             <SheetTrigger asChild>
