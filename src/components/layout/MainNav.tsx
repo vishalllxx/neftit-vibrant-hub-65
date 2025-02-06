@@ -82,42 +82,41 @@ export function MainNav() {
         <div className="flex items-center gap-4">
           <WalletConnect />
           
-          <div className="flex items-center gap-4">
-            <Link to="/profile" className="flex items-center gap-3 bg-white/5 px-4 py-2 rounded-lg hover:bg-white/10 transition-colors">
-              <Avatar className="h-8 w-8">
-                <AvatarImage src="/placeholder.svg" />
-                <AvatarFallback>VS</AvatarFallback>
-              </Avatar>
-              <span className="text-white text-sm font-medium">vishal5120</span>
-            </Link>
-
-            <Sheet>
-              <SheetTrigger asChild>
+          <Sheet>
+            <SheetTrigger asChild>
+              <div className="space-y-2">
+                <Link to="/profile" className="flex items-center gap-3 bg-white/5 px-4 py-2 rounded-lg hover:bg-white/10 transition-colors">
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage src="/placeholder.svg" />
+                    <AvatarFallback>VS</AvatarFallback>
+                  </Avatar>
+                  <span className="text-white text-sm font-medium">vishal5120</span>
+                </Link>
                 <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
                   <Users className="h-5 w-5" />
                 </Button>
-              </SheetTrigger>
-              <SheetContent className="w-[300px] bg-[#121212] border-l border-white/10">
-                <div className="space-y-2">
-                  {menuItems.map((item) => (
-                    <Link
-                      key={item.path}
-                      to={item.path}
-                      className="flex items-center gap-3 px-4 py-2 text-white hover:bg-white/5 rounded-lg transition-colors"
-                    >
-                      {item.icon}
-                      <span>{item.name}</span>
-                      {item.badge && (
-                        <span className="ml-auto text-xs bg-primary px-2 py-1 rounded-full">
-                          {item.badge}
-                        </span>
-                      )}
-                    </Link>
-                  ))}
-                </div>
-              </SheetContent>
-            </Sheet>
-          </div>
+              </div>
+            </SheetTrigger>
+            <SheetContent className="w-[300px] bg-[#121212] border-l border-white/10">
+              <div className="space-y-2">
+                {menuItems.map((item) => (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    className="flex items-center gap-3 px-4 py-2 text-white hover:bg-white/5 rounded-lg transition-colors"
+                  >
+                    {item.icon}
+                    <span>{item.name}</span>
+                    {item.badge && (
+                      <span className="ml-auto text-xs bg-primary px-2 py-1 rounded-full">
+                        {item.badge}
+                      </span>
+                    )}
+                  </Link>
+                ))}
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </nav>
