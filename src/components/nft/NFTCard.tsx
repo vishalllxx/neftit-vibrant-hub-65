@@ -1,53 +1,61 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Heart, Share2 } from "lucide-react";
+import { Bookmark } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface NFTCardProps {
   id: string;
   name: string;
   image: string;
-  price?: string;
-  creator: string;
-  likes: number;
-  isLiked?: boolean;
+  creator: {
+    name: string;
+    image: string;
+  };
+  xp: number;
+  neft: number;
+  backgroundColor: string;
 }
 
-export function NFTCard({ id, name, image, price, creator, likes, isLiked }: NFTCardProps) {
+export function NFTCard({ id, name, image, creator, xp, neft, backgroundColor }: NFTCardProps) {
   return (
-    <Card className="glass card-hover overflow-hidden">
-      <div className="aspect-square relative overflow-hidden">
-        <img
-          src={image}
-          alt={name}
-          className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
-        />
-        <div className="absolute top-2 right-2 flex gap-2">
-          <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/50">
-            <Heart className={`h-4 w-4 ${isLiked ? 'fill-red-500 text-red-500' : ''}`} />
-          </Button>
-          <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full bg-black/50">
-            <Share2 className="h-4 w-4" />
-          </Button>
+    <Card className={cn("border-0 overflow-hidden transition-all duration-300 hover:scale-[1.02]", backgroundColor)}>
+      <div className="p-4 space-y-4">
+        <div className="relative aspect-[4/3] rounded-lg overflow-hidden">
+          <img
+            src={image}
+            alt={name}
+            className="object-cover w-full h-full"
+          />
+          <button className="absolute top-3 right-3 p-1.5 rounded-md bg-black/20 hover:bg-black/40 transition-colors">
+            <Bookmark className="h-4 w-4 text-white" />
+          </button>
         </div>
-        {price && (
-          <Badge className="absolute bottom-2 left-2 bg-black/50 hover:bg-black/50">
-            {price} ETH
-          </Badge>
-        )}
+        
+        <div className="space-y-3">
+          <div className="flex items-center gap-2">
+            <img
+              src={creator.image}
+              alt={creator.name}
+              className="w-5 h-5 rounded-full"
+            />
+            <span className="text-sm font-medium text-white/90">{creator.name}</span>
+          </div>
+          
+          <h3 className="font-semibold text-white/90 line-clamp-2">
+            {name}
+          </h3>
+          
+          <div className="flex gap-2">
+            <Badge variant="secondary" className="bg-white/10 hover:bg-white/20 text-white">
+              {xp} XPs
+            </Badge>
+            <Badge variant="secondary" className="bg-white/10 hover:bg-white/20 text-white">
+              {neft} NEFT
+            </Badge>
+          </div>
+        </div>
       </div>
-      <CardHeader>
-        <CardTitle className="text-lg">{name}</CardTitle>
-        <p className="text-sm text-muted-foreground">by {creator}</p>
-      </CardHeader>
-      <CardContent>
-        <div className="flex justify-between items-center">
-          <span className="text-sm text-muted-foreground">{likes} likes</span>
-          <Button variant="secondary" size="sm">
-            View Details
-          </Button>
-        </div>
-      </CardContent>
     </Card>
   );
 }
