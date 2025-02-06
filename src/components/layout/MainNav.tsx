@@ -1,4 +1,3 @@
-import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -12,16 +11,6 @@ import { Diamond, Trophy, Users, Award, Gift, Bookmark, LogOut } from "lucide-re
 
 export function MainNav() {
   const menuItems = [
-    { 
-      name: "3 NEFT", 
-      icon: <Diamond className="h-4 w-4" />,
-      path: "/profile"
-    },
-    { 
-      name: "380 XPs", 
-      icon: <Trophy className="h-4 w-4" />,
-      path: "/profile"
-    },
     { 
       name: "Leaderboard", 
       icon: <Users className="h-4 w-4" />,
@@ -64,10 +53,26 @@ export function MainNav() {
         
         <div className="flex items-center gap-4">
           <WalletConnect />
+          
+          {/* Stats Box */}
+          <div className="flex bg-black/40 rounded-full overflow-hidden">
+            <div className="flex items-center gap-2 px-4 py-2 border-r border-white/10">
+              <Trophy className="h-4 w-4 text-primary" />
+              <span className="text-white text-sm">380 XPs</span>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2">
+              <Diamond className="h-4 w-4 text-primary" />
+              <span className="text-white text-sm">3 NEFT</span>
+            </div>
+          </div>
+
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="text-white">
-                <Menu className="h-6 w-6" />
+              <Button variant="ghost" size="icon" className="rounded-full p-0 h-10 w-10">
+                <Avatar>
+                  <AvatarImage src="/placeholder.svg" />
+                  <AvatarFallback>VS</AvatarFallback>
+                </Avatar>
               </Button>
             </SheetTrigger>
             <SheetContent className="w-[300px] bg-[#121212] border-l border-white/10">
