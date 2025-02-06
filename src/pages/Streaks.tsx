@@ -1,5 +1,5 @@
+
 import { MainNav } from "@/components/layout/MainNav";
-import { VerticalNav } from "@/components/layout/VerticalNav";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Trophy, Star, Calendar, Clock } from "lucide-react";
@@ -15,8 +15,7 @@ const Streaks = () => {
   return (
     <div className="min-h-screen">
       <MainNav />
-      <VerticalNav />
-      <main className="pl-20 pt-24 pr-4 container mx-auto">
+      <main className="pt-24 px-4 container mx-auto">
         <div className="max-w-4xl mx-auto space-y-8">
           <div className="text-center space-y-4">
             <h1 className="text-4xl font-bold text-gradient">Daily Streaks</h1>
