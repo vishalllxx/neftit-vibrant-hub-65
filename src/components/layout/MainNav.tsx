@@ -80,38 +80,31 @@ export function MainNav() {
         </div>
         
         <div className="flex items-center gap-4">
-          {/* User Stats Box */}
-          <div className="flex items-center gap-3">
-            <div className="flex bg-black/40 rounded-full overflow-hidden h-8">
-              <div className="flex items-center gap-2 px-3 py-1 border-r border-white/10">
-                <Trophy className="h-3.5 w-3.5 text-primary" />
-                <span className="text-white text-sm">380 XPs</span>
-              </div>
-              <div className="flex items-center gap-2 px-3 py-1">
-                <Diamond className="h-3.5 w-3.5 text-primary" />
-                <span className="text-white text-sm">3 NEFT</span>
-              </div>
-            </div>
-
-            {/* Username Box */}
-            <Link
-              to="/profile"
-              className="px-3 py-1.5 text-sm text-white bg-white/5 hover:bg-white/10 rounded-lg transition-colors"
-            >
-              vishal5120
-            </Link>
-          </div>
-
-          <WalletConnect />
-
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="rounded-full p-0 h-10 w-10">
-                <Avatar>
-                  <AvatarImage src="/placeholder.svg" />
-                  <AvatarFallback>VS</AvatarFallback>
-                </Avatar>
-              </Button>
+              <div className="flex items-center gap-3 cursor-pointer">
+                <div className="flex items-center gap-3">
+                  <div className="flex bg-black/40 rounded-full overflow-hidden h-8">
+                    <div className="flex items-center gap-2 px-3 py-1 border-r border-white/10">
+                      <Trophy className="h-3.5 w-3.5 text-primary" />
+                      <span className="text-white text-sm">380 XPs</span>
+                    </div>
+                    <div className="flex items-center gap-2 px-3 py-1">
+                      <Diamond className="h-3.5 w-3.5 text-primary" />
+                      <span className="text-white text-sm">3 NEFT</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Avatar className="h-8 w-8">
+                    <AvatarImage src="/placeholder.svg" />
+                    <AvatarFallback>VS</AvatarFallback>
+                  </Avatar>
+                  <span className="text-sm text-white bg-white/5 px-3 py-1.5 rounded-lg">
+                    vishal5120
+                  </span>
+                </div>
+              </div>
             </SheetTrigger>
             <SheetContent className="w-[300px] bg-[#121212] border-l border-white/10">
               <div className="flex items-center gap-3 mb-8">
@@ -142,6 +135,8 @@ export function MainNav() {
               </div>
             </SheetContent>
           </Sheet>
+
+          <WalletConnect />
         </div>
       </div>
     </nav>
