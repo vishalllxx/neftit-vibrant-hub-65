@@ -13,52 +13,67 @@ import NotFound from "./pages/NotFound";
 const queryClient = new QueryClient();
 
 const isAuthenticated = () => {
-  return localStorage.getItem("isAuthenticated") === "true";
+  // Clear any stale auth state on app load
+  const auth = localStorage.getItem("isAuthenticated");
+  if (!auth) {
+    localStorage.setItem("isAuthenticated", "false");
+    return false;
+  }
+  return auth === "true";
 };
 
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
   return isAuthenticated() ? children : <Navigate to="/auth" replace />;
 };
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <WalletProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/auth" element={<AuthPage />} />
-            <Route
-              path="/"
-              element={
-                <PrivateRoute>
-                  <Index />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                <PrivateRoute>
-                  <Profile />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/streaks"
-              element={
-                <PrivateRoute>
-                  <Streaks />
-                </PrivateRoute>
-              }
-            />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </WalletProvider>
-  </QueryClientProvider>
-);
+const App = () => {
+  console.log("Auth state:", isAuthenticated()); // Debug log
+  
+  return (
+    <QueryClientProvider client={queryClient}>
+      <WalletProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route 
+                path="/auth" 
+                element={
+                  isAuthenticated() ? <Navigate to="/" replace /> : <AuthPage />
+                } 
+              />
+              <Route
+                path="/"
+                element={
+                  <PrivateRoute>
+                    <Index />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <PrivateRoute>
+                    <Profile />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/streaks"
+                element={
+                  <PrivateRoute>
+                    <Streaks />
+                  </PrivateRoute>
+                }
+              />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </WalletProvider>
+    </QueryClientProvider>
+  );
+};
 
 export default App;
