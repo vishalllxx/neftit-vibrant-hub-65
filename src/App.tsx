@@ -9,17 +9,17 @@ import Index from "./pages/Index";
 import Profile from "./pages/Profile";
 import Streaks from "./pages/Streaks";
 import NotFound from "./pages/NotFound";
+import { useEffect } from "react";
 
 const queryClient = new QueryClient();
 
+// Initialize auth state if it doesn't exist
+if (localStorage.getItem("isAuthenticated") === null) {
+  localStorage.setItem("isAuthenticated", "false");
+}
+
 const isAuthenticated = () => {
-  // Clear any stale auth state on app load
-  const auth = localStorage.getItem("isAuthenticated");
-  if (!auth) {
-    localStorage.setItem("isAuthenticated", "false");
-    return false;
-  }
-  return auth === "true";
+  return localStorage.getItem("isAuthenticated") === "true";
 };
 
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
@@ -27,8 +27,10 @@ const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
 };
 
 const App = () => {
-  console.log("Auth state:", isAuthenticated()); // Debug log
-  
+  useEffect(() => {
+    console.log("Current auth state:", isAuthenticated());
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <WalletProvider>
@@ -39,9 +41,7 @@ const App = () => {
             <Routes>
               <Route 
                 path="/auth" 
-                element={
-                  isAuthenticated() ? <Navigate to="/" replace /> : <AuthPage />
-                } 
+                element={<AuthPage />}
               />
               <Route
                 path="/"
