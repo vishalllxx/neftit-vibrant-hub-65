@@ -15,7 +15,7 @@ const queryClient = new QueryClient();
 
 // Initialize auth state if it doesn't exist
 if (typeof window !== 'undefined') {
-  if (localStorage.getItem("isAuthenticated") === null) {
+  if (!localStorage.getItem("isAuthenticated")) {
     localStorage.setItem("isAuthenticated", "false");
   }
 }
@@ -26,14 +26,16 @@ const isAuthenticated = () => {
 };
 
 const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
-  return isAuthenticated() ? children : <Navigate to="/auth" replace />;
+  const auth = isAuthenticated();
+  
+  useEffect(() => {
+    console.log("Auth state in PrivateRoute:", auth);
+  }, [auth]);
+
+  return auth ? children : <Navigate to="/auth" />;
 };
 
 const App = () => {
-  useEffect(() => {
-    console.log("Current auth state:", isAuthenticated());
-  }, []);
-
   return (
     <QueryClientProvider client={queryClient}>
       <WalletProvider>
@@ -43,17 +45,14 @@ const App = () => {
           <BrowserRouter>
             <Routes>
               <Route 
-                path="/auth" 
-                element={<AuthPage />}
-              />
-              <Route
-                path="/"
+                path="/" 
                 element={
                   <PrivateRoute>
                     <Index />
                   </PrivateRoute>
-                }
+                } 
               />
+              <Route path="/auth" element={<AuthPage />} />
               <Route
                 path="/profile"
                 element={
