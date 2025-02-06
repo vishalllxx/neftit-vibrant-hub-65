@@ -84,20 +84,23 @@ export function MainNav() {
           
           <Sheet>
             <SheetTrigger asChild>
-              <div className="space-y-2">
-                <Link to="/profile" className="flex items-center gap-3 bg-white/5 px-4 py-2 rounded-lg hover:bg-white/10 transition-colors">
-                  <Avatar className="h-8 w-8">
-                    <AvatarImage src="/placeholder.svg" />
-                    <AvatarFallback>VS</AvatarFallback>
-                  </Avatar>
-                  <span className="text-white text-sm font-medium">vishal5120</span>
-                </Link>
-                <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
-                  <Users className="h-5 w-5" />
-                </Button>
-              </div>
+              <Button variant="ghost" size="icon" className="text-white hover:bg-white/10">
+                <Avatar className="h-8 w-8">
+                  <AvatarImage src="/placeholder.svg" />
+                  <AvatarFallback>VS</AvatarFallback>
+                </Avatar>
+              </Button>
             </SheetTrigger>
             <SheetContent className="w-[300px] bg-[#121212] border-l border-white/10">
+              <div className="flex items-center gap-3 px-4 py-4 mb-4 bg-white/5 rounded-lg">
+                <Avatar className="h-10 w-10">
+                  <AvatarImage src="/placeholder.svg" />
+                  <AvatarFallback>VS</AvatarFallback>
+                </Avatar>
+                <Link to="/profile" className="text-white font-medium">
+                  vishal5120
+                </Link>
+              </div>
               <div className="space-y-2">
                 {menuItems.map((item) => (
                   <Link
