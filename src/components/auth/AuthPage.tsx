@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useToast } from "@/components/ui/use-toast";
+import { useEffect } from "react";
 
 export function AuthPage() {
   const navigate = useNavigate();
@@ -17,6 +17,14 @@ export function AuthPage() {
     });
     navigate("/");
   };
+
+  useEffect(() => {
+    // Force the dialog to be open on component mount
+    const dialogTrigger = document.querySelector('[data-trigger="auth-dialog"]') as HTMLButtonElement;
+    if (dialogTrigger) {
+      dialogTrigger.click();
+    }
+  }, []);
 
   const socialLogins = [
     {
@@ -76,7 +84,8 @@ export function AuthPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-background to-background/80">
-      <Dialog>
+      <Dialog defaultOpen>
+        <DialogTrigger data-trigger="auth-dialog" className="hidden">Open</DialogTrigger>
         <DialogContent className="sm:max-w-[425px] bg-[#1A1B1E] text-white border-0">
           <DialogHeader className="relative">
             <DialogTitle className="text-xl font-semibold text-center">LOGIN OR SIGN UP</DialogTitle>
