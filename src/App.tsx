@@ -14,11 +14,14 @@ import { useEffect } from "react";
 const queryClient = new QueryClient();
 
 // Initialize auth state if it doesn't exist
-if (localStorage.getItem("isAuthenticated") === null) {
-  localStorage.setItem("isAuthenticated", "false");
+if (typeof window !== 'undefined') {
+  if (localStorage.getItem("isAuthenticated") === null) {
+    localStorage.setItem("isAuthenticated", "false");
+  }
 }
 
 const isAuthenticated = () => {
+  if (typeof window === 'undefined') return false;
   return localStorage.getItem("isAuthenticated") === "true";
 };
 
